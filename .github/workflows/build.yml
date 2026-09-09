@@ -13,10 +13,8 @@ jobs:
         with:
           flutter-version: '3.22.0'
           channel: 'stable'
-      - name: Build
+      - name: Build AAB
         run: |
-          rm -rf android ios web linux windows macos
-          flutter create. --project-name samarket --org com.gilinvestments.samarket --platforms android
           flutter pub get
           flutter build appbundle --release
       - uses: actions/upload-artifact@v4
