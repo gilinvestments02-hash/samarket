@@ -7,15 +7,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: '17'
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.22.0'
           channel: 'stable'
-      - run: flutter pub get
-      - run: flutter build appbundle --release
+      - name: Build
+        run: |
+          rm -rf android ios web linux windows macos
+          flutter create. --project-name samarket --org com.gilinvestments.samarket --platforms android
+          flutter pub get
+          flutter build appbundle --release
       - uses: actions/upload-artifact@v4
         with:
-          name: app-release-aab
+          name: release-aab
           path: build/app/outputs/bundle/release/app-release.aab
