@@ -15,6 +15,7 @@ jobs:
           channel: 'stable'
       - name: Build AAB
         run: |
+          flutter create . --org com.gilinvestments.samarket --project-name samarket --platforms android
           flutter pub get
           flutter build appbundle --release
       - uses: actions/upload-artifact@v4
